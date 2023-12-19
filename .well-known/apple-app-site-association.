@@ -4,7 +4,7 @@
       "details": [
           {
               "appID": "DTYP8FAQCY.is.n1.app",
-              "paths": ["/path/to/content*", "/anotherpath/*"]
+              "paths": ["*"]
           }
       ]
   }
