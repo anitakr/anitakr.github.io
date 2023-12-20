@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript">
+        // Store a special code in local storage
+        function storeSpecialCode() {
+            localStorage.setItem('specialCode', 'SPECIALDISCOUNT');
+        }
+
+        // Redirect to the App Store or Google Play based on the device
+        function redirectToAppStore() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // Apple App Store Link
+                window.location.href = 'https://apps.apple.com/app/idYOUR_APPLE_APP_ID';
+            } else {
+                // Google Play Store Link
+                window.location.href = 'https://play.google.com/store/apps/details?id=YOUR_ANDROID_APP_ID';
+            }
+        }
+    </script>
     <title>Download Our App</title>
     <style>
         body {
@@ -23,24 +41,7 @@
             background-color: #0056b3;
         }
     </style>
-    <script type="text/javascript">
-        // Store a special code in local storage
-        function storeSpecialCode() {
-            localStorage.setItem('specialCode', 'SPECIALDISCOUNT');
-        }
-
-        // Redirect to the App Store or Google Play based on the device
-        function redirectToAppStore() {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                // Apple App Store Link
-                window.location.href = 'https://apps.apple.com/app/idYOUR_APPLE_APP_ID';
-            } else {
-                // Google Play Store Link
-                window.location.href = 'https://play.google.com/store/apps/details?id=YOUR_ANDROID_APP_ID';
-            }
-        }
-    </script>
+    
 </head>
 <body>
     <h1>Welcome to Our App!</h1>
