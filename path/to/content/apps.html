@@ -2,9 +2,17 @@
 <html>
 <head>
     <script type="text/javascript">
+        // Function to copy text to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                console.log('Text successfully copied');
+            }).catch(function(err) {
+                console.error('Error in copying text: ', err);
+            });
+        }
+
         // Function to check for 'special' query parameter
         function hasSpecialQueryParam() {
-            navigator.clipboard.writeText("test");
             var params = new URLSearchParams(window.location.search);
             return params.has('special');
         }
@@ -20,46 +28,20 @@
         storeSpecialCode();
 
         // Redirect to the App Store or Google Play based on the device
-        function redirectToAppStore() {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                // Apple App Store Link
-                window.location.href = 'https://apps.apple.com/app/idYOUR_APPLE_APP_ID';
-            } else {
-                // Google Play Store Link
-                window.location.href = 'https://play.google.com/store/apps/details?id=YOUR_ANDROID_APP_ID';
-            }
+        // and copy to clipboard
+        function redirectToAppStoreAndCopy(text, url) {
+            copyToClipboard(text);
+            window.location.href = url;
         }
     </script>
     <title>Download Our App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 50px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-    
+    <!-- existing style -->
 </head>
 <body>
     <h1>Welcome to Our App!</h1>
     <p>Get the full experience by downloading our app.</p>
 
-    <a href="https://apps.apple.com/app/1596077029" class="button">Download on the App Store</a>
-    <a href="https://testflight.apple.com/join/xNQd94zo" class="button">Join Beta on TestFlight</a>
+    <button onclick="redirectToAppStoreAndCopy('Your text to copy', 'https://apps.apple.com/app/1596077029')" class="button">Download on the App Store</button>
+    <button onclick="redirectToAppStoreAndCopy('Your text to copy', 'https://testflight.apple.com/join/xNQd94zo')" class="button">Join Beta on TestFlight</button>
 </body>
 </html>
