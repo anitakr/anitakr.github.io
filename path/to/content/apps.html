@@ -2,9 +2,33 @@
 <html>
 <head>
     <script type="text/javascript">
-           window.onload = function myFunc() {
-            localStorage.setItem('specialCode', 'SPECIALDISCOUNT');
-           }
+        // Function to check for 'special' query parameter
+        function hasSpecialQueryParam() {
+            var params = new URLSearchParams(window.location.search);
+            return params.has('special');
+        }
+
+        // Store a special code in local storage if 'special' query parameter is present
+        function storeSpecialCode() {
+            if (hasSpecialQueryParam()) {
+                localStorage.setItem('specialCode', 'SPECIALDISCOUNT');
+            }
+        }
+
+        // Call storeSpecialCode when the script loads
+        storeSpecialCode();
+
+        // Redirect to the App Store or Google Play based on the device
+        function redirectToAppStore() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // Apple App Store Link
+                window.location.href = 'https://apps.apple.com/app/idYOUR_APPLE_APP_ID';
+            } else {
+                // Google Play Store Link
+                window.location.href = 'https://play.google.com/store/apps/details?id=YOUR_ANDROID_APP_ID';
+            }
+        }
     </script>
     <title>Download Our App</title>
     <style>
