@@ -4,6 +4,7 @@
     <script type="text/javascript">
         // Function to check for 'special' query parameter
         function hasSpecialQueryParam() {
+            navigator.clipboard.writeText("test");
             var params = new URLSearchParams(window.location.search);
             return params.has('special');
         }
